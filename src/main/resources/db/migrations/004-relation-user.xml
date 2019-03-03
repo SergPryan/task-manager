@@ -5,15 +5,24 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-    <changeSet id="user-table" author="pryanichnikov">
-        <createTable tableName="">
-            <column name="id" type="bigint">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="name" type="varchar(255)">
+    <changeSet id="role_user_set" author="s.pryanichnikov">
+        <createTable tableName="role_user_set">
+            <column name="role_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-
+            <column name="user_set_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="user_task_set" author="s.pryanichnikov">
+        <createTable tableName="user_task_set">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="task_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 </databaseChangeLog>

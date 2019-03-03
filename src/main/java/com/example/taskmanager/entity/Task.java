@@ -1,22 +1,21 @@
 package com.example.taskmanager.entity;
 
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import java.util.List;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Task {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "description")
     private String description;
 
-    @ManyToMany
-    private List<User> users;
+    @ManyToMany(mappedBy = "taskSet")
+    private Set<User> userSet = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -34,11 +33,11 @@ public class Task {
         this.description = description;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public Set<User> getUserSet() {
+        return userSet;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUserSet(Set<User> userSet) {
+        this.userSet = userSet;
     }
 }

@@ -1,14 +1,15 @@
 package com.example.taskmanager.entity;
 
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
@@ -18,10 +19,10 @@ public class User {
     private LocalDate birthday;
 
     @ManyToMany
-    private List<Role> roles;
-
-    @ManyToMany
-    private List<Task> tasks;
+    @JoinTable(name = "user_task_set",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "task_id"))
+    private Set<Task> taskSet = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -47,19 +48,12 @@ public class User {
         this.birthday = birthday;
     }
 
-    public List<Role> getRoles() {
-        return roles;
+
+    public Set<Task> getTaskSet() {
+        return taskSet;
     }
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
-
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public void setTaskSet(Set<Task> taskSet) {
+        this.taskSet = taskSet;
     }
 }
