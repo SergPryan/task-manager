@@ -1,7 +1,8 @@
 import  React, {Component} from 'react';
 import {Route, Switch} from "react-router-dom";
 import Home from "./Home";
-import Tasks from "./Tasks";
+import {Tasks} from "./Tasks";
+
 
 export class Main extends Component{
     render() {
